@@ -1,0 +1,108 @@
+# --- servicios ---
+services:
+  # --- Solr ---
+  solr:
+
+    image: solr
+    ports:  
+      - "8983:8983"
+    volumes:
+      - solr_data:/var/solr
+    command:
+      - solr-precreate 
+      - mycore
+    environment:
+      - SOLR_HOME=/var/solr
+    networks:
+      - nlp_network
+
+  # --- Milvus ---
+  milvus:
+    # --- imagen de milvus ---
+    image: milvusdb/milvus:v2.4.0
+
+    # --- nombre del contenedor ---
+    container_name: milvus
+
+    # -- reinicio automático ---
+    restart: always
+
+    # --- puertos ---
+    # --- mapeamos los puertos necesarios para milvus ---
+    ports:
+      - "19530:19530"
+      - "9091:9091" 
+
+    # --- variables de entorno --- 
+    environment:
+      - TZ=UTC
+
+    # --- volúmenes ---
+    # --- montamos un volumen para persistir los datos de milvus ---
+    volumes:
+      - milvus_data:/var/lib/milvus
+
+    # --- network ---
+    # --- definimos la red a la que pertenece el servicio ---
+    networks:
+      - nlp_network
+
+  # --- API: FastAPI ---
+  api:
+    build:
+       ./api
+    container_name: 
+      api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - milvus
+      - solr
+    environment:
+      - MILVUS_HOST=milvus
+      - MILVUS_PORT=19530
+      - SOLR_HOST=solr
+      - SOLR_PORT=8983
+    command: 
+      uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - nlp_network
+
+  indexer:
+    build: ./indexer
+    container_name: indexer
+    depends_on:
+      - api
+      - milvus
+      - solr
+    environment:
+      - API_URL=http://api:8000
+      - MILVUS_HOST=milvus
+      - SOLR_HOST=solr
+    command: python indexer.py
+    networks:
+      - nlp_network
+
+  # --- Evaluator: servicio de evaluación ---
+  evaluator:
+    build: ./evaluator
+    container_name: evaluator
+    depends_on:
+      - api
+      - milvus
+    environment:
+      - API_URL=http://api:8000
+      - MILVUS_HOST=milvus
+    command: python evaluator.py
+    networks:
+      - nlp_network
+
+# --- Volúmenes persistentes ---
+volumes:
+  solr_data:
+  milvus_data:
+
+# --- Red interna ---
+networks:
+  nlp_network:
+    driver: bridge
