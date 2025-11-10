@@ -1,0 +1,6 @@
+pandas
+numpy
+requests
+pymilvus==2.4.0
+sentence-transformers
+marshmallow==3.13.0

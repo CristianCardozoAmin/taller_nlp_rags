@@ -1,108 +1,78 @@
-# --- servicios ---
-services:
-  # --- Solr ---
-  solr:
+version: "3.9"
 
-    image: solr
-    ports:  
+services:
+  solr:
+    image: solr:9
+    container_name: solr
+    command:
+      - solr-precreate
+      - rag
+    ports:
       - "8983:8983"
     volumes:
-      - solr_data:/var/solr
-    command:
-      - solr-precreate 
-      - mycore
-    environment:
-      - SOLR_HOME=/var/solr
-    networks:
-      - nlp_network
+      - ./services/solr:/var/solr
+    restart: unless-stopped
 
-  # --- Milvus ---
   milvus:
-    # --- imagen de milvus ---
     image: milvusdb/milvus:v2.4.0
-
-    # --- nombre del contenedor ---
     container_name: milvus
-
-    # -- reinicio automático ---
-    restart: always
-
-    # --- puertos ---
-    # --- mapeamos los puertos necesarios para milvus ---
-    ports:
-      - "19530:19530"
-      - "9091:9091" 
-
-    # --- variables de entorno --- 
+    command: ["milvus", "run", "standalone"]
     environment:
-      - TZ=UTC
-
-    # --- volúmenes ---
-    # --- montamos un volumen para persistir los datos de milvus ---
+      ETCD_USE_EMBED: "true"
+      MINIO_USE_EMBED: "true"
+      COMMON_STORAGETYPE: "local"
+    ports:
+      - "19530:19530"   # gRPC
+      - "9091:9091"     # HTTP/monitoring
     volumes:
-      - milvus_data:/var/lib/milvus
+      - ./services/milvus:/var/lib/milvus
+    restart: unless-stopped
 
-    # --- network ---
-    # --- definimos la red a la que pertenece el servicio ---
-    networks:
-      - nlp_network
-
-  # --- API: FastAPI ---
   api:
-    build:
-       ./api
-    container_name: 
-      api
+    build: ./services/api
+    container_name: rag_api
+    depends_on:
+      - solr
+      - milvus
+    environment:
+      SOLR_URL: "http://solr:8983/solr/rag"
+      MILVUS_HOST: "milvus"
+      MILVUS_PORT: "19530"
+      MILVUS_COLLECTION: "rag_collection"
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+      OPENAI_MODEL: "gpt-5-mini"
     ports:
       - "8000:8000"
-    depends_on:
-      - milvus
-      - solr
-    environment:
-      - MILVUS_HOST=milvus
-      - MILVUS_PORT=19530
-      - SOLR_HOST=solr
-      - SOLR_PORT=8983
-    command: 
-      uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-    networks:
-      - nlp_network
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
 
   indexer:
-    build: ./indexer
-    container_name: indexer
+    build: ./services/indexer
+    container_name: rag_indexer
     depends_on:
-      - api
-      - milvus
       - solr
-    environment:
-      - API_URL=http://api:8000
-      - MILVUS_HOST=milvus
-      - SOLR_HOST=solr
-    command: python indexer.py
-    networks:
-      - nlp_network
-
-  # --- Evaluator: servicio de evaluación ---
-  evaluator:
-    build: ./evaluator
-    container_name: evaluator
-    depends_on:
-      - api
       - milvus
     environment:
-      - API_URL=http://api:8000
-      - MILVUS_HOST=milvus
-    command: python evaluator.py
-    networks:
-      - nlp_network
+      CSV_PATH: "/app/data/corpus"
+      SOLR_URL: "http://solr:8983/solr/rag"
+      MILVUS_HOST: "milvus"
+      MILVUS_PORT: "19530"
+      MILVUS_COLLECTION: "rag_collection"
+    volumes:
+      - ./data:/app/data
+    restart: "no"
 
-# --- Volúmenes persistentes ---
-volumes:
-  solr_data:
-  milvus_data:
-
-# --- Red interna ---
-networks:
-  nlp_network:
-    driver: bridge
+  evaluator:
+    build: ./services/evaluator
+    container_name: rag_evaluator
+    depends_on:
+      - api
+    environment:
+      API_URL: "http://api:8000"
+      REPORT_DIR: "/app/reports"
+      EVAL_FILE: "/app/data/eval_queries.json"
+    volumes:
+      - ./reports:/app/reports
+      - ./data:/app/data
+    restart: "no"

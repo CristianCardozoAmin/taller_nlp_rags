@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+requests
+pydantic
+numpy
+pymilvus==2.4.0
+sentence-transformers
+marshmallow==3.13.0
+openai

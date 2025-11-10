@@ -1,0 +1,124 @@
+2025-11-09 16:57:17.437 INFO  (main) [c: s: r: x: t:] o.e.j.s.Server jetty-10.0.19; built: 2023-12-15T20:38:32.477Z; git: 8492d1c78f122bb30cce20aecfa07e7283facd47; jvm 17.0.12+7
+2025-11-09 16:57:17.646 WARN  (main) [c: s: r: x: t:] o.e.j.u.DeprecationWarning Using @Deprecated Class org.eclipse.jetty.servlet.listener.ELContextCleaner
+2025-11-09 16:57:17.669 INFO  (main) [c: s: r: x: t:] o.a.s.s.CoreContainerProvider Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2025-11-09 16:57:17.676 INFO  (main) [c: s: r: x: t:] o.a.s.s.CoreContainerProvider  ___      _       Welcome to Apache Solr™ version 9.5.0
+2025-11-09 16:57:17.676 INFO  (main) [c: s: r: x: t:] o.a.s.s.CoreContainerProvider / __| ___| |_ _   Starting in standalone mode on port 8983
+2025-11-09 16:57:17.676 INFO  (main) [c: s: r: x: t:] o.a.s.s.CoreContainerProvider \__ \/ _ \ | '_|  Install dir: /opt/solr-9.5.0
+2025-11-09 16:57:17.676 INFO  (main) [c: s: r: x: t:] o.a.s.s.CoreContainerProvider |___/\___/_|_|    Start time: 2025-11-09T16:57:17.676719948Z
+2025-11-09 16:57:17.679 INFO  (main) [c: s: r: x: t:] o.a.s.s.CoreContainerProvider Solr started with "-XX:+CrashOnOutOfMemoryError" that will crash on any OutOfMemoryError exception. The cause of the OOME will be logged in the crash file at the following path: /var/solr/logs/jvm_crash_17.log
+2025-11-09 16:57:17.700 INFO  (main) [c: s: r: x: t:] o.a.s.s.CoreContainerProvider Solr Home: /var/solr/data (source: system property: solr.solr.home)
+2025-11-09 16:57:17.712 INFO  (main) [c: s: r: x: t:] o.a.s.c.SolrXmlConfig solr.xml not found in SOLR_HOME, using built-in default
+2025-11-09 16:57:17.712 INFO  (main) [c: s: r: x: t:] o.a.s.c.SolrXmlConfig Loading solr.xml from /opt/solr-9.5.0/server/solr/solr.xml
+2025-11-09 16:57:17.742 INFO  (main) [c: s: r: x: t:] o.a.s.c.SolrResourceLoader Added 1 libs to classloader, from paths: [/opt/solr-9.5.0/lib]
+2025-11-09 16:57:18.331 INFO  (main) [c: s: r: x: t:] o.a.s.u.t.SimplePropagator Always-on trace id generation enabled.
+2025-11-09 16:57:18.509 WARN  (main) [c: s: r: x: t:] o.a.s.u.StartupLoggingUtils Jetty request logging enabled. Will retain logs for last 3 days. See chapter "Configuring Logging" in reference guide for how to configure.
+2025-11-09 16:57:18.511 WARN  (main) [c: s: r: x: t:] o.a.s.c.CoreContainer Not all security plugins configured!  authentication=disabled authorization=disabled.  Solr is only as secure as you make it. Consider configuring authentication/authorization before exposing Solr to users internal or external.  See https://s.apache.org/solrsecurity for more info
+2025-11-09 16:57:18.670 INFO  (main) [c: s: r: x: t:] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath /var/solr/data
+2025-11-09 16:57:18.671 INFO  (main) [c: s: r: x: t:] o.a.s.c.CorePropertiesLocator Cores are: [rag_core]
+2025-11-09 16:57:18.710 INFO  (coreLoadExecutor-11-thread-1) [c: s: r: x:rag_core t:] o.a.s.c.SolrConfig Using Lucene MatchVersion: 9.9.0
+2025-11-09 16:57:18.782 INFO  (coreLoadExecutor-11-thread-1) [c: s: r: x:rag_core t:] o.a.s.s.IndexSchema Schema name=default-config
+2025-11-09 16:57:18.824 WARN  (main) [c: s: r: x: t:] o.g.j.m.i.MessagingBinders A class jakarta.activation.DataSource for a default provider MessageBodyWriter<jakarta.activation.DataSource> was not found. The provider is not available.
+2025-11-09 16:57:19.063 INFO  (main) [c: s: r: x: t:] o.a.s.j.SolrRequestAuthorizer Creating a new SolrRequestAuthorizer
+2025-11-09 16:57:19.184 INFO  (main) [c: s: r: x: t:] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@62d363ab{solr-jetty-context.xml,/solr,file:///opt/solr-9.5.0/server/solr-webapp/webapp/,AVAILABLE}{/opt/solr-9.5.0/server/solr-webapp/webapp}
+2025-11-09 16:57:19.197 INFO  (main) [c: s: r: x: t:] o.e.j.s.RequestLogWriter Opened /var/solr/logs/2025_11_09.request.log
+2025-11-09 16:57:19.200 INFO  (main) [c: s: r: x: t:] o.e.j.s.AbstractConnector Started ServerConnector@79da1ec0{HTTP/1.1, (http/1.1, h2c)}{0.0.0.0:8983}
+2025-11-09 16:57:19.201 INFO  (main) [c: s: r: x: t:] o.e.j.s.Server Started Server@277f7dd3{STARTING}[10.0.19,sto=0] @2728ms
+2025-11-09 16:57:19.534 INFO  (coreLoadExecutor-11-thread-1) [c: s: r: x:rag_core t:] o.a.s.s.IndexSchema Loaded schema default-config/1.6 with uniqueid field id
+2025-11-09 16:57:19.534 INFO  (coreLoadExecutor-11-thread-1) [c: s: r: x:rag_core t:] o.a.s.c.CoreContainer Creating SolrCore 'rag_core' using configuration from instancedir /var/solr/data/rag_core, trusted=true
+2025-11-09 16:57:19.558 INFO  (coreLoadExecutor-11-thread-1) [c: s: r: x:rag_core t:] o.a.s.c.SolrCore Opening new SolrCore at [/var/solr/data/rag_core], dataDir=[/var/solr/data/rag_core/data/]
+2025-11-09 16:57:19.992 INFO  (coreLoadExecutor-11-thread-1) [c: s: r: x:rag_core t:] o.a.s.j.SolrRequestAuthorizer Creating a new SolrRequestAuthorizer
+2025-11-09 16:57:20.007 INFO  (coreLoadExecutor-11-thread-1) [c: s: r: x:rag_core t:] o.a.s.u.UpdateHandler Using UpdateLog implementation: org.apache.solr.update.UpdateLog
+2025-11-09 16:57:20.007 INFO  (coreLoadExecutor-11-thread-1) [c: s: r: x:rag_core t:] o.a.s.u.UpdateLog Initializing UpdateLog: dataDir= defaultSyncLevel=FLUSH numRecordsToKeep=100 maxNumLogsToKeep=10 numVersionBuckets=65536
+2025-11-09 16:57:20.021 INFO  (coreLoadExecutor-11-thread-1) [c: s: r: x:rag_core t:] o.a.s.u.CommitTracker Hard AutoCommit: if uncommitted for 15000ms; 
+2025-11-09 16:57:20.021 INFO  (coreLoadExecutor-11-thread-1) [c: s: r: x:rag_core t:] o.a.s.u.CommitTracker Soft AutoCommit: if uncommitted for 3000ms; 
+2025-11-09 16:57:20.080 INFO  (coreLoadExecutor-11-thread-1) [c: s: r: x:rag_core t:] o.a.s.r.ManagedResourceStorage File-based storage initialized to use dir: /var/solr/data/rag_core/conf
+2025-11-09 16:57:20.089 INFO  (coreLoadExecutor-11-thread-1) [c: s: r: x:rag_core t:] o.a.s.s.DirectSolrSpellChecker init: {name=default, field=_text_, classname=solr.DirectSolrSpellChecker, distanceMeasure=internal, maxEdits=2, minPrefix=1, maxInspections=5, minQueryLength=4, accuracy=0.5, maxQueryFrequency=0.01}
+2025-11-09 16:57:20.094 INFO  (coreLoadExecutor-11-thread-1) [c: s: r: x:rag_core t:] o.a.s.h.ReplicationHandler Commits will be reserved for 10000 ms
+2025-11-09 16:57:20.095 INFO  (searcherExecutor-13-thread-1-processing-rag_core) [c: s: r: x:rag_core t:] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2025-11-09 16:57:20.095 INFO  (searcherExecutor-13-thread-1-processing-rag_core) [c: s: r: x:rag_core t:] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
+2025-11-09 16:57:20.100 INFO  (searcherExecutor-13-thread-1-processing-rag_core) [c: s: r: x:rag_core t:] o.a.s.c.SolrCore Registered new searcher autowarm time: 0 ms
+2025-11-09 16:57:20.942 INFO  (qtp738677855-54-null-1) [c: s: r: x:rag_core t:null-1] o.a.s.c.S.Request webapp=/solr path=/admin/ping params={} hits=0 status=0 QTime=17
+2025-11-09 16:57:20.943 INFO  (qtp738677855-54-null-1) [c: s: r: x:rag_core t:null-1] o.a.s.c.S.Request webapp=/solr path=/admin/ping params={} status=0 QTime=17
+2025-11-09 16:58:02.892 ERROR (qtp738677855-28-null-2) [c: s: r: x:rag_core t:null-2] o.a.s.h.RequestHandlerBase Client exception => org.apache.solr.common.SolrException: org.apache.solr.search.SyntaxError: Query Field 'text_clean' is not a valid field name
+	at org.apache.solr.handler.component.QueryComponent.prepare(QueryComponent.java:219)
+org.apache.solr.common.SolrException: org.apache.solr.search.SyntaxError: Query Field 'text_clean' is not a valid field name
+	at org.apache.solr.handler.component.QueryComponent.prepare(QueryComponent.java:219) ~[?:?]
+	at org.apache.solr.handler.component.SearchHandler.handleRequestBody(SearchHandler.java:431) ~[?:?]
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:226) ~[?:?]
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2884) ~[?:?]
+	at org.apache.solr.servlet.HttpSolrCall.executeCoreRequest(HttpSolrCall.java:875) ~[?:?]
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:561) ~[?:?]
+	at org.apache.solr.servlet.SolrDispatchFilter.dispatch(SolrDispatchFilter.java:262) ~[?:?]
+	at org.apache.solr.servlet.SolrDispatchFilter.lambda$doFilter$0(SolrDispatchFilter.java:219) ~[?:?]
+	at org.apache.solr.servlet.ServletUtils.traceHttpRequestExecution2(ServletUtils.java:249) ~[?:?]
+	at org.apache.solr.servlet.ServletUtils.rateLimitRequest(ServletUtils.java:215) ~[?:?]
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:213) ~[?:?]
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:195) ~[?:?]
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:210) ~[jetty-servlet-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635) ~[jetty-servlet-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:527) ~[jetty-servlet-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:131) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:598) ~[jetty-security-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:223) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1580) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1384) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484) ~[jetty-servlet-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1553) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1306) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:149) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.InetAccessHandler.handle(InetAccessHandler.java:228) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:141) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:301) ~[jetty-rewrite-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.gzip.GzipHandler.handle(GzipHandler.java:822) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.Server.handle(Server.java:563) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287) ~[jetty-server-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314) ~[jetty-io-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100) ~[jetty-io-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53) ~[jetty-io-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.runTask(AdaptiveExecutionStrategy.java:421) ~[jetty-util-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.consumeTask(AdaptiveExecutionStrategy.java:390) ~[jetty-util-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.tryProduce(AdaptiveExecutionStrategy.java:277) ~[jetty-util-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.produce(AdaptiveExecutionStrategy.java:193) ~[jetty-util-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969) ~[jetty-util-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194) ~[jetty-util-10.0.19.jar:10.0.19]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149) ~[jetty-util-10.0.19.jar:10.0.19]
+	at java.base/java.lang.Thread.run(Unknown Source) [?:?]
+Caused by: org.apache.solr.search.SyntaxError: Query Field 'text_clean' is not a valid field name
+	at org.apache.solr.search.ExtendedDismaxQParser.checkFieldInSchema(ExtendedDismaxQParser.java:269) ~[?:?]
+	at org.apache.solr.search.ExtendedDismaxQParser.checkFieldsInSchema(ExtendedDismaxQParser.java:281) ~[?:?]
+	at org.apache.solr.search.ExtendedDismaxQParser.validateQueryFields(ExtendedDismaxQParser.java:218) ~[?:?]
+	at org.apache.solr.search.ExtendedDismaxQParser.parse(ExtendedDismaxQParser.java:144) ~[?:?]
+	at org.apache.solr.search.QParser.getQuery(QParser.java:188) ~[?:?]
+	at org.apache.solr.handler.component.QueryComponent.prepare(QueryComponent.java:173) ~[?:?]
+	... 51 more
+Caused by: org.apache.solr.common.SolrException: undefined field: "text_clean"
+	at org.apache.solr.schema.IndexSchema.getField(IndexSchema.java:1423) ~[?:?]
+	at org.apache.solr.search.ExtendedDismaxQParser.checkFieldInSchema(ExtendedDismaxQParser.java:267) ~[?:?]
+	at org.apache.solr.search.ExtendedDismaxQParser.checkFieldsInSchema(ExtendedDismaxQParser.java:281) ~[?:?]
+	at org.apache.solr.search.ExtendedDismaxQParser.validateQueryFields(ExtendedDismaxQParser.java:218) ~[?:?]
+	at org.apache.solr.search.ExtendedDismaxQParser.parse(ExtendedDismaxQParser.java:144) ~[?:?]
+	at org.apache.solr.search.QParser.getQuery(QParser.java:188) ~[?:?]
+	at org.apache.solr.handler.component.QueryComponent.prepare(QueryComponent.java:173) ~[?:?]
+	... 51 more
+2025-11-09 16:58:02.892 INFO  (qtp738677855-28-null-2) [c: s: r: x:rag_core t:null-2] o.a.s.c.S.Request webapp=/solr path=/select params={q=¿Qué+es+el+aprendizaje+automático?&defType=edismax&qf=text_clean&fl=id,id_doc,page,text_clean,score&rows=5} status=400 QTime=5
+2025-11-09 17:00:34.922 INFO  (JettyShutdownThread) [c: s: r: x: t:] o.e.j.s.Server Stopped Server@277f7dd3{STOPPING}[10.0.19,sto=0]
+2025-11-09 17:00:34.924 INFO  (JettyShutdownThread) [c: s: r: x: t:] o.e.j.s.AbstractConnector Stopped ServerConnector@79da1ec0{HTTP/1.1, (http/1.1, h2c)}{0.0.0.0:8983}
+2025-11-09 17:00:34.932 INFO  (JettyShutdownThread) [c: s: r: x: t:] o.a.s.c.CoreContainer Shutting down CoreContainer instance=580965610
+2025-11-09 17:00:34.934 INFO  (coreCloseExecutor-19-thread-1) [c: s: r: x:rag_core t:] o.a.s.c.SolrCore CLOSING SolrCore org.apache.solr.core.SolrCore@78125078 rag_core
+2025-11-09 17:00:34.935 INFO  (coreCloseExecutor-19-thread-1) [c: s: r: x:rag_core t:] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.core.rag_core tag=SolrCore@78125078
+2025-11-09 17:00:34.951 INFO  (coreCloseExecutor-19-thread-1) [c: s: r: x:rag_core t:] o.a.s.u.DirectUpdateHandler2 Committing on IndexWriter.close()  ... SKIPPED (unnecessary).
+2025-11-09 17:00:34.963 INFO  (JettyShutdownThread) [c: s: r: x: t:] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.node tag=null
+2025-11-09 17:00:34.972 INFO  (JettyShutdownThread) [c: s: r: x: t:] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jvm tag=null
+2025-11-09 17:00:34.976 INFO  (JettyShutdownThread) [c: s: r: x: t:] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jetty tag=null
+2025-11-09 17:00:34.980 INFO  (JettyShutdownThread) [c: s: r: x: t:] o.e.j.s.h.ContextHandler Stopped o.e.j.w.WebAppContext@62d363ab{solr-jetty-context.xml,/solr,null,STOPPED}{/opt/solr-9.5.0/server/solr-webapp/webapp}

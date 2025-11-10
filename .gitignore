@@ -205,3 +205,15 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+data/corpus/testimonios_cev_preprocesado.csv
+/services/milvus/data/index_files
+/services/milvus/rdb_data
+/services/solr/data
+/services/solr/data
+/services/solr/logs
+/services/solr/data
+/services/milvus/data
+/services/solr/data/rag_core
+/services/solr/data
+/services/solr/data
+/data/corpus
