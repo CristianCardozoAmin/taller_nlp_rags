@@ -72,6 +72,8 @@ services:
       API_URL: "http://api:8000"
       REPORT_DIR: "/app/reports"
       EVAL_FILE: "/app/data/eval_queries.json"
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+      OPENAI_MODEL: "gpt-5-mini"
     volumes:
       - ./reports:/app/reports
       - ./data:/app/data

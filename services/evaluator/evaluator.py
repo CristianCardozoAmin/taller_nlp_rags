@@ -171,7 +171,7 @@ def evaluate_backend(backend: str, eval_data: List[Dict]) -> Dict[str, float]:
         t0 = time.time()
         resp = requests.post(
             f"{API_URL}/ask",
-            json={"query": query, "backend": backend, "k": 10},
+            json={"query": query, "backend": backend, "k": 4},
             timeout=120,
         )
         dt = time.time() - t0

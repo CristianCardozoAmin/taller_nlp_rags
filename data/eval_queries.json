@@ -1,0 +1,35 @@
+[
+  {
+    "query": "¿Cuáles documentos contienen testimonios que hablan sobre violencia sexual en el conflicto armado?",
+    "relevant_docs": [
+      "5eb4e943da6da3b502dacc2b.pdf",
+      "5eb4ea7ada6da3b502db162c.pdf",
+      "603ba4019e8b013f26f73ca5.pdf",
+      "5ef238f9f1cdbf68d0566853.pdf",
+      "603baaf99e8b013f26f8b83c.pdf"
+    ],
+    "ideal_answer": "Los documentos mencionan que la violencia sexual fue utilizada como una forma de control, castigo y humillación hacia las mujeres y niñas en el marco del conflicto armado. Las víctimas narran hechos de abuso por parte de distintos actores armados, el estigma que enfrentaron y las dificultades para denunciar debido al miedo y la vergüenza. Estos testimonios resaltan la necesidad de reconocimiento y reparación integral."
+  },
+  {
+    "query": "¿Qué documentos incluyen relatos sobre asesinatos cometidos durante el conflicto armado?",
+    "relevant_docs": [
+      "5efcc5e1f1cdbf68d0c1974a.pdf",
+      "5ececb0d2158107829862ce9.pdf",
+      "5ef8d0a8f1cdbf68d095d559.pdf",
+      "5eb4ea90da6da3b502db1ad0.pdf",
+      "5ecec87b21581078298564ac.pdf"
+    ],
+    "ideal_answer": "Los documentos recogen testimonios de familiares y testigos de asesinatos selectivos y masacres cometidas por distintos grupos armados. Las narraciones destacan el miedo, la impunidad y el impacto emocional de perder a seres queridos. En varios relatos, las víctimas piden justicia y reconocimiento de los responsables, enfatizando el dolor de la ausencia y la ruptura del tejido comunitario."
+  },
+  {
+    "query": "¿En cuáles testimonios aparecen personas que fueron integrantes o tuvieron relación con las FARC?",
+    "relevant_docs": [
+      "5eb4e80eda6da3b502da5187.pdf",
+      "5fee31e49e8b013f26900810.pdf",
+      "5eb4e7c1da6da3b502da3597.pdf",
+      "5f0f403cf1cdbf68d09a558c.pdf",
+      "5eb4e7c2da6da3b502da359d.pdf"
+    ],
+    "ideal_answer": "Los testimonios incluyen voces de exintegrantes de las FARC y de personas que tuvieron algún tipo de contacto con ese grupo armado. En ellos se describen las motivaciones para unirse, las condiciones de vida en la guerrilla, los procesos de desmovilización y las dificultades de reintegración a la sociedad. También se evidencian reflexiones sobre la violencia ejercida, el arrepentimiento y la búsqueda de reconciliación."
+  }
+]
