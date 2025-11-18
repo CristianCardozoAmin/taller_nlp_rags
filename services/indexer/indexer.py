@@ -1,5 +1,6 @@
 import os
 import time
+import hashlib
 from typing import List
 
 import numpy as np
@@ -21,19 +22,8 @@ MILVUS_HOST = os.getenv("MILVUS_HOST", "milvus")
 MILVUS_PORT = os.getenv("MILVUS_PORT", "19530")
 MILVUS_COLLECTION = os.getenv("MILVUS_COLLECTION", "rag_collection")
 
-# Máximo de caracteres permitido por el campo VARCHAR en Milvus
-MAX_TEXT_LEN = 10000
-
-def truncate_text(text, max_len: int = MAX_TEXT_LEN) -> str:
-    """Convierte a string y recorta a max_len caracteres."""
-    if isinstance(text, str):
-        return text[:max_len]
-    if pd.isna(text):
-        return ""
-    return str(text)[:max_len]
 
 def connect_milvus(retries: int = 10, wait: int = 5):
-    """Intenta conectar a Milvus con reintentos."""
     for i in range(retries):
         try:
             print(f"Conectando a Milvus (intento {i+1}/{retries})...")
@@ -48,7 +38,6 @@ def connect_milvus(retries: int = 10, wait: int = 5):
 
 
 def wait_for_solr(timeout: int = 120):
-    """Hace ping a Solr hasta que responda OK o se acabe el timeout."""
     start = time.time()
     while time.time() - start < timeout:
         try:
@@ -79,26 +68,45 @@ def load_csv_files() -> pd.DataFrame:
 
     df_all = pd.concat(dfs, ignore_index=True)
 
-    expected_cols = {"id_doc", "pages", "text", "text_clean", "contenido_preprocesado"}
+    expected_cols = {"seccion", "seccion_principal", "subseccion", "contenido", "contenido_preprocesado"}
     missing = expected_cols - set(df_all.columns)
     if missing:
         raise ValueError(f"Faltan columnas en CSV: {missing}")
-    
-    df_all["text_clean"] = df_all["text_clean"].apply(truncate_text)
+
+    # Limpieza básica
+    for c in ["seccion", "seccion_principal", "subseccion", "contenido"]:
+        df_all[c] = df_all[c].fillna("").astype(str)
 
     return df_all
 
 
-def index_solr(df: pd.DataFrame):
-    """Indexa documentos en Solr usando campos dinámicos (sin schema.xml)."""
-    docs: List[dict] = []
+def make_id_doc(sp: str, s: str, ss: str) -> str:
+    """ID legible + estable. Ej: 'sp|s|ss::<hash6>' para evitar colisiones."""
+    base = f"{sp}|{s}|{ss}"
+    h = hashlib.sha1(base.encode("utf-8")).hexdigest()[:6]
+    return f"{base}::{h}"  # VARCHAR <= 256
 
-    for _, row in df.iterrows():
+
+def index_solr(df: pd.DataFrame):
+    docs: List[dict] = []
+    # page = índice 1..N
+    for idx, row in df.reset_index(drop=True).iterrows():
+        sp = row["seccion_principal"].strip()
+        s = row["seccion"].strip()
+        ss = row["subseccion"].strip()
+        contenido = row["contenido"].strip()
+
+        id_doc = make_id_doc(sp, s, ss)
+        page = idx + 1
+
         doc = {
-            "id": f"{row['id_doc']}_{row['pages']}",  # id único
-            "id_doc_s": str(row["id_doc"]),           # string
-            "page_i": int(row["pages"]),              # int
-            "text_clean_txt": str(row["text_clean"]), # campo de texto
+            "id": f"{id_doc}_{page}",
+            "id_doc_s": id_doc,
+            "page_i": page,
+            "seccion_principal_s": sp,
+            "seccion_s": s,
+            "subseccion_s": ss,
+            "contenido_txt": contenido,  # <- campo de texto para consultas
         }
         docs.append(doc)
 
@@ -109,26 +117,28 @@ def index_solr(df: pd.DataFrame):
         f"{SOLR_URL}/update?commit=true",
         json=payload,
         headers={"Content-Type": "application/json"},
-        timeout=300,
+        timeout=600,
     )
     r.raise_for_status()
     print("Indexación en Solr completa.")
 
 
 def create_or_reset_collection(dim: int) -> Collection:
-    """Crea (o recrea) la colección en Milvus con el esquema adecuado."""
     if utility.has_collection(MILVUS_COLLECTION):
         print(f"Eliminando colección existente {MILVUS_COLLECTION}...")
         utility.drop_collection(MILVUS_COLLECTION)
 
     fields = [
         FieldSchema(name="pk", dtype=DataType.INT64, is_primary=True, auto_id=True),
-        FieldSchema(name="id_doc", dtype=DataType.VARCHAR, max_length=64),
+        FieldSchema(name="id_doc", dtype=DataType.VARCHAR, max_length=256),
         FieldSchema(name="page", dtype=DataType.INT64),
-        FieldSchema(name="text_clean", dtype=DataType.VARCHAR, max_length=65534),
+        FieldSchema(name="seccion_principal", dtype=DataType.VARCHAR, max_length=256),
+        FieldSchema(name="seccion", dtype=DataType.VARCHAR, max_length=256),
+        FieldSchema(name="subseccion", dtype=DataType.VARCHAR, max_length=256),
+        FieldSchema(name="contenido", dtype=DataType.VARCHAR, max_length=65535),
         FieldSchema(name="embedding", dtype=DataType.FLOAT_VECTOR, dim=dim),
     ]
-    schema = CollectionSchema(fields, description="RAG collection")
+    schema = CollectionSchema(fields, description="RAG collection (nuevo corpus)")
 
     col = Collection(name=MILVUS_COLLECTION, schema=schema)
     print("Colección Milvus creada.")
@@ -146,7 +156,6 @@ def create_or_reset_collection(dim: int) -> Collection:
 
 
 def index_milvus(df: pd.DataFrame):
-    """Genera embeddings BERT y los indexa en Milvus."""
     model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
     test_vec = model.encode(["test"])[0]
     dim = len(test_vec)
@@ -156,20 +165,50 @@ def index_milvus(df: pd.DataFrame):
 
     batch_size = 128
     num_rows = len(df)
+    MAX_CONTENT_LEN = 20000  # puedes declararlo arriba del archivo si quieres
 
     for start in range(0, num_rows, batch_size):
         end = min(start + batch_size, num_rows)
-        batch = df.iloc[start:end]
+        batch = df.iloc[start:end].reset_index(drop=True)
         print(f"Indexando en Milvus filas {start} - {end}...")
 
-        id_docs = [str(x) for x in batch["id_doc"].tolist()]
-        pages = [int(x) for x in batch["pages"].tolist()]
-        texts = [str(x) for x in batch["text_clean"].tolist()]
+        id_docs = []
+        pages = []
+        sps = []
+        ss = []
+        sss = []
+        contenidos = []
 
-        embeds = model.encode(texts, batch_size=32, show_progress_bar=False)
-        embeds = [v.astype(np.float32).tolist() for v in embeds]
+        for i, row in batch.iterrows():
+            sp = row["seccion_principal"].strip()
+            s = row["seccion"].strip()
+            ssub = row["subseccion"].strip()
 
-        entities = [id_docs, pages, texts, embeds]
+            cont_raw = row["contenido"]
+            if isinstance(cont_raw, str):
+                cont_raw = cont_raw.strip()
+            else:
+                cont_raw = "" if pd.isna(cont_raw) else str(cont_raw)
+
+            # 👇 TRUNCAMOS A 8000 CARACTERES PARA MILVUS
+            cont = cont_raw[:MAX_CONTENT_LEN]
+
+            id_doc = make_id_doc(sp, s, ssub)
+            page = start + i + 1
+
+            id_docs.append(id_doc)
+            pages.append(int(page))
+            sps.append(sp)
+            ss.append(s)
+            sss.append(ssub)
+            contenidos.append(cont)
+
+        # Embeddings sobre el texto truncado (suficiente para captar el tema)
+        vecs = model.encode(contenidos, batch_size=32, show_progress_bar=False)
+        embeds = [v.astype(np.float32).tolist() for v in vecs]
+
+        # El orden de 'entities' debe coincidir EXACTAMENTE con el orden de fields
+        entities = [id_docs, pages, sps, ss, sss, contenidos, embeds]
         col.insert(entities)
 
     col.flush()
@@ -183,10 +222,8 @@ def main():
     connect_milvus()
 
     df = load_csv_files()
-
     index_solr(df)
     index_milvus(df)
-
     print("Indexación completa. Saliendo.")
 
 

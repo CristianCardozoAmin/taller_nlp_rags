@@ -171,7 +171,7 @@ def evaluate_backend(backend: str, eval_data: List[Dict]) -> Dict[str, float]:
         t0 = time.time()
         resp = requests.post(
             f"{API_URL}/ask",
-            json={"query": query, "backend": backend, "k": 4},
+            json={"query": query, "backend": backend, "k": 7},
             timeout=120,
         )
         dt = time.time() - t0
@@ -186,7 +186,7 @@ def evaluate_backend(backend: str, eval_data: List[Dict]) -> Dict[str, float]:
 
         data = resp.json()
         docs = data.get("documents", [])
-        retrieved_ids = [f"{d['id_doc']}_{d['page']}" for d in docs]
+        retrieved_ids = [str(d["id_doc"]) for d in docs]
         answer = data.get("answer", "")
 
         recalls.append(recall_at_k(retrieved_ids, relevant_ids))
@@ -199,6 +199,13 @@ def evaluate_backend(backend: str, eval_data: List[Dict]) -> Dict[str, float]:
 
     def avg(xs: List[float]) -> float:
         return float(np.mean(xs)) if xs else 0.0
+
+    print("\n[DEBUG]", backend)
+    print("query:", query)
+    print("retrieved_ids:", retrieved_ids)
+    print("relevant_ids:", relevant_ids)
+    print("retrieved_norm:", [r for r in retrieved_ids])
+    print("relevant_norm:", [r for r in relevant_ids])
 
     return {
         "latency_avg": avg(latencies),

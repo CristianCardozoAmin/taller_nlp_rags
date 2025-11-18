@@ -1,35 +1,47 @@
 [
   {
-    "query": "¿Cuáles documentos contienen testimonios que hablan sobre violencia sexual en el conflicto armado?",
+    "query": "¿Qué revela el libro sobre las violencias sexuales y reproductivas que enfrentaron niñas y mujeres durante el conflicto armado?",
     "relevant_docs": [
-      "5eb4e943da6da3b502dacc2b.pdf",
-      "5eb4ea7ada6da3b502db162c.pdf",
-      "603ba4019e8b013f26f73ca5.pdf",
-      "5ef238f9f1cdbf68d0566853.pdf",
-      "603baaf99e8b013f26f8b83c.pdf"
+      "¿Qué pasó? Significados y  magnitudes de lo sucedido|Mujeres|Las violencias sexuales y reproductivas contra niñas y mujeres::7213e0",
+      "¿Qué pasó? Violencias contra las personas LGBTIQ+ en el marco del conflicto armado colombiano|LGBTIQ+|Situaciones territoriales ilustrativas de la persecución contra personas LGBTIQ+ en el marco del conflicto armado::9bb0ab",
+      "¿Qué pasó con lo que pasó?|Mujeres|Impactos del conflicto armado en las mujeres::b9e51c"
     ],
-    "ideal_answer": "Los documentos mencionan que la violencia sexual fue utilizada como una forma de control, castigo y humillación hacia las mujeres y niñas en el marco del conflicto armado. Las víctimas narran hechos de abuso por parte de distintos actores armados, el estigma que enfrentaron y las dificultades para denunciar debido al miedo y la vergüenza. Estos testimonios resaltan la necesidad de reconocimiento y reparación integral."
+    "ideal_answer": "El libro expone que las violencias sexuales y reproductivas fueron utilizadas por los actores armados como mecanismos de control, dominación y castigo contra niñas, jóvenes y mujeres adultas. Estas violencias incluyeron abuso sexual, explotación, regulación forzada de la vida reproductiva y coerción sobre la maternidad. Los relatos muestran el profundo daño físico, psicológico y comunitario, así como la persistencia del silencio por miedo, estigma y falta de garantías para denunciar. Esta sección subraya la necesidad de reconocimiento, reparación integral y garantías de no repetición." 
   },
   {
-    "query": "¿Qué documentos incluyen relatos sobre asesinatos cometidos durante el conflicto armado?",
+    "query": "¿Cómo describe el libro las experiencias de las mujeres en el desplazamiento forzado y el despojo durante la guerra?",
     "relevant_docs": [
-      "5efcc5e1f1cdbf68d0c1974a.pdf",
-      "5ececb0d2158107829862ce9.pdf",
-      "5ef8d0a8f1cdbf68d095d559.pdf",
-      "5eb4ea90da6da3b502db1ad0.pdf",
-      "5ecec87b21581078298564ac.pdf"
+      "¿Qué pasó? Significados y  magnitudes de lo sucedido|Mujeres|Mujeres políticas expulsadas de la democracia::387ad8",
+      "¿Qué pasó? Significados y  magnitudes de lo sucedido|Mujeres|Las mujeres en la guerra: vinculación e impactos en sus vidas y en sus familias::0ff99d",
+      "¿Por qué pasó? Dimensiones del patriarcado|Mujeres|El contínuum de violencias, una realidad que cambia pero no desaparece::132e65"
     ],
-    "ideal_answer": "Los documentos recogen testimonios de familiares y testigos de asesinatos selectivos y masacres cometidas por distintos grupos armados. Las narraciones destacan el miedo, la impunidad y el impacto emocional de perder a seres queridos. En varios relatos, las víctimas piden justicia y reconocimiento de los responsables, enfatizando el dolor de la ausencia y la ruptura del tejido comunitario."
+    "ideal_answer": "El libro relata que el desplazamiento forzado obligó a miles de mujeres a abandonar territorios que representaban no solo sus hogares sino sus vínculos comunitarios, culturales y económicos. Muchas debieron recomenzar sus vidas en condiciones de extrema vulnerabilidad, enfrentando riesgos adicionales como violencias sexuales, explotación laboral y pérdida de redes de apoyo. Aun así, reconstruyeron comunidad, asumieron roles de liderazgo y cuidaron a sus familias, mostrando resiliencia pese a las múltiples pérdidas."
   },
   {
-    "query": "¿En cuáles testimonios aparecen personas que fueron integrantes o tuvieron relación con las FARC?",
+    "query": "¿Qué patrones de persecución contra personas LGBTIQ+ identifica el libro en el marco del conflicto armado?",
     "relevant_docs": [
-      "5eb4e80eda6da3b502da5187.pdf",
-      "5fee31e49e8b013f26900810.pdf",
-      "5eb4e7c1da6da3b502da3597.pdf",
-      "5f0f403cf1cdbf68d09a558c.pdf",
-      "5eb4e7c2da6da3b502da359d.pdf"
+      "¿Qué pasó con lo que les pasó a las personas LGBTIQ+ en el marco del conflicto armado colombiano?|LGBTIQ+|Impactos de las violencias contra personas LGBTIQ+::82f1a6",
+      "¿Qué pasó? Violencias contra las personas LGBTIQ+ en el marco del conflicto armado colombiano|LGBTIQ+|Patrones de persecución contra las personas LGBTIQ+ diferenciados según el actor armado::a6ee6b",
+      "Los porqués de la persecución contra personas LGBTIQ+|LGBTIQ+|Factores institucionales y políticos::09f277"
     ],
-    "ideal_answer": "Los testimonios incluyen voces de exintegrantes de las FARC y de personas que tuvieron algún tipo de contacto con ese grupo armado. En ellos se describen las motivaciones para unirse, las condiciones de vida en la guerrilla, los procesos de desmovilización y las dificultades de reintegración a la sociedad. También se evidencian reflexiones sobre la violencia ejercida, el arrepentimiento y la búsqueda de reconciliación."
+    "ideal_answer": "El libro identifica que los actores armados persiguieron sistemáticamente a personas LGBTIQ+ por sus orientaciones sexuales e identidades y expresiones de género no normativas. Los patrones incluyen castigos ejemplarizantes, control moral del territorio, homicidios, amenazas, desplazamientos, violaciones correctivas y restricciones a las formas de vida comunitaria. Las FARC-EP, grupos paramilitares y la fuerza pública actuaron con motivaciones diferentes, pero todos reprodujeron violencias basadas en prejuicios de género y sexualidad."
+  },
+  {
+    "query": "¿Cuáles fueron los principales impactos psicológicos, físicos y comunitarios del conflicto armado en las mujeres?",
+    "relevant_docs": [
+      "¿Por qué pasó? Dimensiones del patriarcado|Mujeres|El mandato de las masculinidades guerreras y su relación con el militarismo::de52bd",
+      "¿Qué pasó? Significados y  magnitudes de lo sucedido|Mujeres|Mujeres políticas expulsadas de la democracia::387ad8",
+      "¿Qué pasó? Significados y  magnitudes de lo sucedido|Mujeres|Las mujeres en la guerra: vinculación e impactos en sus vidas y en sus familias::0ff99d"
+    ],
+    "ideal_answer": "El libro señala que las mujeres experimentaron impactos profundos en su salud mental, su identidad individual y colectiva, y su relación con el territorio. Sufrieron traumas prolongados, afectaciones en su cuerpo, rupturas familiares, pérdidas simbólicas y materiales, y duelos no resueltos. A nivel comunitario, la destrucción del tejido social fue significativa, aunque muchas mujeres lograron reconstruir la vida colectiva a través del cuidado, la organización y prácticas resilientes."
+  },
+  {
+  "query": "¿Cómo describe el libro las formas de resistencia y organización de las mujeres frente a la guerra?",
+  "relevant_docs": [
+    "¿Qué pasó? Significados y  magnitudes de lo sucedido|Mujeres|La guerra, el territorio y las mujeres::17c93c",
+    "¿Qué pasó con lo que pasó?|Mujeres|Afrontamientos de las mujeres víctimas::e6694c",
+    "¿Por qué pasó? Dimensiones del patriarcado|Mujeres|El mandato de las masculinidades guerreras y su relación con el militarismo::de52bd"
+   ],
+  "ideal_answer": "El libro destaca que las mujeres se organizaron para defender la vida, proteger a sus comunidades y exigir paz y justicia. Surgieron formas de resistencia política, cultural y comunitaria: desde liderazgos territoriales, redes de apoyo, búsquedas de sus hijos e hijas, hasta prácticas simbólicas como el canto, el bordado y el arte para reconstruir memoria. La juntanza entre mujeres fortaleció su capacidad de incidencia y se convirtió en un motor de transformación social."
   }
 ]
